@@ -15,8 +15,8 @@ public class AccountService  {
     this.accountRepository = accountRepository;
   }
 
-  public CompletableFuture<EntityWithIdAndVersion<Account>> openAccount(String customerId, String title, BigDecimal initialBalance, String description) {
-    return accountRepository.save(new OpenAccountCommand(customerId, title, initialBalance, description));
+  public CompletableFuture<EntityWithIdAndVersion<Account>> openAccount(String customerId, String title, BigDecimal initialBalance, String description, String productId) {
+    return accountRepository.save(new OpenAccountCommand(customerId, title, initialBalance, description, productId));
   }
 
   public CompletableFuture<EntityWithIdAndVersion<Account>> deleteAccount(String accountId) {

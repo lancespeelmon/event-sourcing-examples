@@ -13,9 +13,10 @@ public class Account extends ReflectiveMutableCommandProcessingAggregate<Account
 
   private BigDecimal balance;
   private boolean deleted;
+  private String productId; // associated Product
 
   public List<Event> process(OpenAccountCommand cmd) {
-    return EventUtil.events(new AccountOpenedEvent(cmd.getCustomerId(), cmd.getTitle(), cmd.getInitialBalance(), cmd.getDescription()));
+    return EventUtil.events(new AccountOpenedEvent(cmd.getCustomerId(), cmd.getTitle(), cmd.getInitialBalance(), cmd.getDescription(), cmd.getProductId()));
   }
 
   public List<Event> process(DeleteAccountCommand cmd) {

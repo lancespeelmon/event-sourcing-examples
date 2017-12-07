@@ -9,12 +9,14 @@ public class OpenAccountCommand implements AccountCommand {
   private String title;
   private BigDecimal initialBalance;
   private String description;
+  private String productId; // associated Product
 
-  public OpenAccountCommand(String customerId, String title, BigDecimal initialBalance, String description) {
+  public OpenAccountCommand(String customerId, String title, BigDecimal initialBalance, String description, String productId) {
     this.customerId = customerId;
     this.title = title;
     this.initialBalance = initialBalance;
     this.description = description;
+    this.productId = productId;
   }
 
   public BigDecimal getInitialBalance() {
@@ -32,4 +34,9 @@ public class OpenAccountCommand implements AccountCommand {
   public String getDescription() {
     return description;
   }
+
+  public String getProductId() {
+    return productId;
+  }
+
 }
