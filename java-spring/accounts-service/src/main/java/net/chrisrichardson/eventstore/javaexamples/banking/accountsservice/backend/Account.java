@@ -7,6 +7,7 @@ import net.chrisrichardson.eventstore.javaexamples.banking.backend.common.accoun
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Account extends ReflectiveMutableCommandProcessingAggregate<Account, AccountCommand> {
@@ -40,6 +41,16 @@ public class Account extends ReflectiveMutableCommandProcessingAggregate<Account
     return EventUtil.events(new AccountCreditedEvent(cmd.getAmount(), cmd.getTransactionId()));
   }
 
+	public BigDecimal process(CalculateAccountRewardCommand cmd) {
+		if (deleted) {
+			return null;
+		} else {
+			return calculateReward(cmd.getCustomer_id(), cmd.getAr_product_id(), cmd.getTransaction_date(),
+					cmd.getAmount());
+		}
+
+	}
+
   public void apply(AccountOpenedEvent event) {
     balance = event.getInitialBalance();
   }
@@ -62,6 +73,13 @@ public class Account extends ReflectiveMutableCommandProcessingAggregate<Account
   public BigDecimal getBalance() {
     return balance;
   }
+
+	private final BigDecimal sampleRewardRate = new BigDecimal(0.01); // 1% mock reward rate
+
+	private BigDecimal calculateReward(String customer_id, String ar_product_id, Date transaction_date,
+			BigDecimal amount) {
+		return amount.multiply(sampleRewardRate); // mock business rule evaluation
+	}
 }
 
 

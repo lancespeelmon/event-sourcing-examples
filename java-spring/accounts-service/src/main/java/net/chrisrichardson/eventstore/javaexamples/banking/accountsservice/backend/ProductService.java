@@ -15,7 +15,7 @@ public class ProductService {
 		this.productRepository = productRepository;
 	}
 
-	public CompletableFuture<EntityWithIdAndVersion<Product>> createProduct(Integer productId, String productLongName,
+	public CompletableFuture<EntityWithIdAndVersion<Product>> createProduct(String productId, String productLongName,
 			String productAbbreviation, String productCategory, Date activeDate) {
 		return productRepository.save((ProductCommand) new CreateProductCommand(productId, productLongName,
 				productAbbreviation, productCategory, activeDate));

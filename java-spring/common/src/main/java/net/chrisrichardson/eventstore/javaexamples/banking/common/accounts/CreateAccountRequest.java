@@ -17,14 +17,18 @@ public class CreateAccountRequest {
   @DecimalMin("0")
   private BigDecimal initialBalance;
 
+  @NotNull
+  private String productId;
+
   public CreateAccountRequest() {
   }
 
-  public CreateAccountRequest(String customerId, String title, String description, BigDecimal initialBalance) {
+  public CreateAccountRequest(String customerId, String title, String description, BigDecimal initialBalance, String productId) {
     this.customerId = customerId;
     this.title = title;
     this.description = description;
     this.initialBalance = initialBalance;
+    this.productId = productId;
   }
 
   public String getCustomerId() {
@@ -57,5 +61,13 @@ public class CreateAccountRequest {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getProductId() {
+    return productId;
+  }
+
+  public void setProductId(String productId) {
+    this.productId = productId;
   }
 }

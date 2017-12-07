@@ -3,13 +3,13 @@ package net.chrisrichardson.eventstore.javaexamples.banking.accountsservice.back
 import java.util.Date;
 
 public class CreateProductCommand implements ProductCommand {
-	private Integer productId;
+	private String productId;
 	private String productLongName;
 	private String productAbbreviation;
 	private String productCategory;
 	private Date activeDate;
 
-	public CreateProductCommand(Integer productId, String productLongName, String productAbbreviation,
+	public CreateProductCommand(String productId, String productLongName, String productAbbreviation,
 			String productCategory, Date activeDate) {
 		this.productId = productId;
 		this.productLongName = productLongName;
@@ -18,7 +18,7 @@ public class CreateProductCommand implements ProductCommand {
 		this.activeDate = activeDate;
 	}
 
-	public Integer getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 
