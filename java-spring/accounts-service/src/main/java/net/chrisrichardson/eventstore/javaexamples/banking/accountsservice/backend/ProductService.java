@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 import io.eventuate.AggregateRepository;
 import io.eventuate.EntityWithIdAndVersion;
+import io.eventuate.EntityWithMetadata;
 
 public class ProductService {
 
@@ -22,6 +23,10 @@ public class ProductService {
 
 	public CompletableFuture<EntityWithIdAndVersion<Product>> deleteProduct(String productId) {
 		return productRepository.update(productId, new DeleteProductCommand());
+	}
+
+	public CompletableFuture<EntityWithMetadata<Product>> getProduct(String productId) {
+		return productRepository.find(productId);
 	}
 
 }
