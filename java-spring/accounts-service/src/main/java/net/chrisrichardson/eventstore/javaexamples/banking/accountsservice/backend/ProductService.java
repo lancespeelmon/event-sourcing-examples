@@ -20,4 +20,8 @@ public class ProductService {
 				productAbbreviation, productCategory, activeDate));
 	}
 
+	public CompletableFuture<EntityWithIdAndVersion<Product>> deleteProduct(String productId) {
+		return productRepository.update(productId, new DeleteProductCommand());
+	}
+
 }
